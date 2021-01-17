@@ -1,0 +1,68 @@
+#+TITLE: Chronos
+
+* spec
+вебсервер хранит информацию о профилях пользователей и экспортирует данные через REST API
+http server stored user profiles and exports data with REST API
+
+echo https://echo.labstack.com/
+Postman
+
+persistence with MongoDB
+ - read
+ - update
+ - create
+ - delete
+REST API
+ - GET request retrieves data from a resource. For example, you’d use a GET request to retrieve a record from a database.
+ - DELETE request deletes a resource.
+ - PUT request updates an existing resource.
+ - POST request creates a new resource, such as a new record in a database.
+
+Field of the entity User
+- ID (object id (mongo db))
+- first name (string)
+- last name (string)
+- age (int)
+- city (string)
+- country (string)
+
+Tests
+- add user
+- delete user by id
+- get by id
+- get by first/last name
+- get by city
+- get by country
+- get all users
+* tasks
+ - [X] install setup
+   + [X] echo
+   + [X] MongoDb
+   + [X] Postman
+   + [X] golang
+ - [X] setup emacs
+   + [X] rest
+   + [X] golang
+ - [ ] commit "docs: plan tasks"
+ - [ ] intermission
+ - [ ] check setup
+   + [ ] helloWorld echo with postman or restclient
+     - GET a default string
+   + [ ] helloWorld mongodb
+     - create database, store and retrieve a string
+ - [ ] describe a single user entity
+ - [ ] instantiate an empty user entity and GET it by id
+ - [ ] commit "feat: GET a user by id"
+ - [ ] intermission
+ - [ ] persist a user object and GET it by id
+ - [ ] commit "feat: persist data"
+ - [ ] delete a user with DELETE
+ - [ ] commit "feat: DELETE a user by id"
+ - [ ] add a name fied to the user entity
+ - [ ] mutate a user object with PUT
+ - [ ] commit "feat: PUT a user name by id"
+ - [ ] intermission
+ - [ ] create a user with POST
+ - [ ] commit "feat: POST a new user"
+ - [ ] refactor
+ - [ ] commit "refactor: <...>"
