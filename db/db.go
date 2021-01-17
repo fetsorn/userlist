@@ -33,7 +33,7 @@ func init() {
 	coll := MongoDb.Collection("Users")
 	coll.DeleteMany(context.TODO(), bson.D{})
 
-	u := models.User{First: "Sam"}
+	u := models.User{First: "Sam", Last: "Jackson", Age: 34, City: "New York", Country: "USA"}
 	_, err = coll.InsertOne(context.TODO(), u)
 	if err != nil {
 		return

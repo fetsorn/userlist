@@ -1,4 +1,4 @@
-#+TITLE: Chronos
+#+TITLE: Userlist
 
 * spec
 вебсервер хранит информацию о профилях пользователей и экспортирует данные через REST API
@@ -58,18 +58,41 @@ type Store interface {
 }
 #+end_src
 
-* readers
- - https://www.avcosystems.com/blog/mongo-go/
- - https://golangdocs.com/mongodb-golang
- - https://www.mongodb.com/blog/post/quick-start-golang--mongodb--how-to-read-documents
- - https://www.mongodb.com/blog/post/quick-start-golang--mongodb--data-aggregation-pipeline
 * rest
 #+begin_src restclient
 GET http://localhost:4000/api/v1/users
 #+end_src
 
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "success": true,
+  "data": [
+    {
+      "id": "6004299cd06d8b1cfeb3c7ad",
+      "First": "Sam",
+      "Last": "Jackson",
+      "Age": 34,
+      "City": "New York",
+      "Country": "USA"
+    }
+  ]
+}
+
+// GET http://localhost:4000/api/v1/users
+// HTTP/1.1 200 OK
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 12:12:16 GMT
+// Content-Length: 204
+// Request duration: 0.007006s
+#+END_SRC
+
 #+begin_src restclient
 GET http://localhost:4000/api/v1/users/6004176776694f24fb635af0
+#+end_src
+
+#+begin_src restclient
+GET http://localhost:4000/api/v1/users/country/USA
 #+end_src
 
 #+begin_src restclient
@@ -85,16 +108,42 @@ Content-Type: application/json
 }
 #+end_src
 
+#+RESULTS:
+#+BEGIN_SRC js
+{
+}
+
+// POST http://localhost:4000/api/v1/users
+// HTTP/1.1 400 Bad Request
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 11:46:04 GMT
+// Content-Length: 3
+// Request duration: 0.019757s
+#+END_SRC
+
 #+begin_src restclient
-PUT http://localhost:4000/api/v1/users/6003edc4905c04207f497152
+PUT http://localhost:4000/api/v1/users/600422d2e341f15cc6503207
 Content-Type: application/json
 
 {
-      "name":  "iysh",
-      "email": "iyshrylana",
-      "age":   45
+      "First":  "liysh"
 }
 #+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": "000000000000000000000000",
+  "First": ""
+}
+
+// PUT http://localhost:4000/api/v1/users/600422d2e341f15cc6503207
+// HTTP/1.1 400 Bad Request
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 11:43:39 GMT
+// Content-Length: 54
+// Request duration: 0.017497s
+#+END_SRC
 
 * tasks
  - [X] install setup
@@ -117,8 +166,10 @@ Content-Type: application/json
  - [X] commit "feat: DELETE a user by id"
  - [X] create a user with POST
  - [X] commit "feat: POST a new user"
- - [ ] mutate a user object with PUT
- - [ ] commit "feat: PUT a user name by id"
+ - [X] add getters for misc fields
+ - [X] commit "feat: add getters for misc fields"
  - [ ] intermission
  - [ ] refactor
  - [ ] commit "refactor: <...>"
+ - [ ] mutate a user object with PUT
+ - [ ] commit "feat: PUT a user name by id"

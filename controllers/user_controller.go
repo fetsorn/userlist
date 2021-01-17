@@ -20,7 +20,7 @@ func NewController() *UserController {
 	return controller
 }
 
-func (controller *UserController) CreateUser(c echo.Context) error {
+func (controller *UserController) AddUser(c echo.Context) error {
 	u := new(models.User)
 	if err := c.Bind(u); err != nil {
 		return c.JSON(http.StatusBadRequest, u)
@@ -61,6 +61,54 @@ func (controller *UserController) GetUser(c echo.Context) error {
 	user, err := controller.UserService.GetUserService(id)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, id)
+	}
+	Response := responses.ListOne(&user)
+	Response.Httpstatus = true
+	return c.JSON(http.StatusOK, Response)
+}
+
+func (controller *UserController) GetUserByFirst(c echo.Context) error {
+	p := c.Param("first")
+
+	user, err := controller.UserService.GetUserByFirstService(p)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, p)
+	}
+	Response := responses.ListOne(&user)
+	Response.Httpstatus = true
+	return c.JSON(http.StatusOK, Response)
+}
+
+func (controller *UserController) GetUserByLast(c echo.Context) error {
+	p := c.Param("last")
+
+	user, err := controller.UserService.GetUserByLastService(p)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, p)
+	}
+	Response := responses.ListOne(&user)
+	Response.Httpstatus = true
+	return c.JSON(http.StatusOK, Response)
+}
+
+func (controller *UserController) GetUserByCity(c echo.Context) error {
+	p := c.Param("city")
+
+	user, err := controller.UserService.GetUserByCityService(p)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, p)
+	}
+	Response := responses.ListOne(&user)
+	Response.Httpstatus = true
+	return c.JSON(http.StatusOK, Response)
+}
+
+func (controller *UserController) GetUserByCountry(c echo.Context) error {
+	p := c.Param("country")
+
+	user, err := controller.UserService.GetUserByCountryService(p)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, p)
 	}
 	Response := responses.ListOne(&user)
 	Response.Httpstatus = true

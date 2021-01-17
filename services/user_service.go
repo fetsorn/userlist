@@ -47,6 +47,46 @@ func (service *Service) GetUserService(id primitive.ObjectID) (user models.User,
 	return user, err
 }
 
+func (service *Service) GetUserByFirstService(p string) (user models.User, err error) {
+	filter := bson.M{"first": p}
+	result := service.userdao.GetUser(filter)
+	if result.Err() != nil {
+		return user, result.Err()
+	}
+	err = result.Decode(&user)
+	return user, err
+}
+
+func (service *Service) GetUserByLastService(p string) (user models.User, err error) {
+	filter := bson.M{"last": p}
+	result := service.userdao.GetUser(filter)
+	if result.Err() != nil {
+		return user, result.Err()
+	}
+	err = result.Decode(&user)
+	return user, err
+}
+
+func (service *Service) GetUserByCityService(p string) (user models.User, err error) {
+	filter := bson.M{"city": p}
+	result := service.userdao.GetUser(filter)
+	if result.Err() != nil {
+		return user, result.Err()
+	}
+	err = result.Decode(&user)
+	return user, err
+}
+
+func (service *Service) GetUserByCountryService(p string) (user models.User, err error) {
+	filter := bson.M{"country": p}
+	result := service.userdao.GetUser(filter)
+	if result.Err() != nil {
+		return user, result.Err()
+	}
+	err = result.Decode(&user)
+	return user, err
+}
+
 func (service *Service) GetUsersService() (Users []models.User, err error) {
 	cur, errs := service.userdao.GetUsers(bson.M{})
 	if errs != nil {

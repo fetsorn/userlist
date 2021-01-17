@@ -20,9 +20,12 @@ func Routes() (e *echo.Echo) {
 	e.Validator = &models.UserValidator{validator.New()}
 	g := e.Group("/api/v1/users", UserCtx)
 	g.DELETE("/:id", Controllers.DeleteUser)
-	g.GET("/:id", Controllers.GetUser)
+	g.GET("first/:first", Controllers.GetUserByFirst)
+	g.GET("/last/:last", Controllers.GetUserByLast)
+	g.GET("/city/:city", Controllers.GetUserByCity)
+	g.GET("/country/:country", Controllers.GetUserByCountry)
 	g.GET("", Controllers.GetUsers)
-	g.POST("", Controllers.CreateUser)
+	g.POST("", Controllers.AddUser)
 	return e
 }
 func UserCtx(next echo.HandlerFunc) echo.HandlerFunc {
