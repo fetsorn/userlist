@@ -13,9 +13,8 @@ type Service struct {
 	userdao dao.UserDaoInterface
 }
 
-var service *Service
-
 func NewService() *Service {
+	var service *Service
 	service = &Service{dao.NewDao()}
 	return service
 }

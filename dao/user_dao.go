@@ -11,9 +11,8 @@ type coll struct {
 	UserCollection *mongo.Collection
 }
 
-var Collection *coll
-
 func NewDao() *coll {
+	var Collection *coll
 	Collection = &coll{UserCollection: db.GetUserCollection()}
 	return Collection
 }

@@ -69,7 +69,7 @@ GET http://localhost:4000/api/v1/users
   "success": true,
   "data": [
     {
-      "id": "60042c16f47bf50df9b62096",
+      "id": "60042dde01a4e0350c84341e",
       "First": "Sam",
       "Last": "Jackson",
       "Age": 34,
@@ -82,25 +82,35 @@ GET http://localhost:4000/api/v1/users
 // GET http://localhost:4000/api/v1/users
 // HTTP/1.1 200 OK
 // Content-Type: application/json; charset=UTF-8
-// Date: Sun, 17 Jan 2021 12:23:12 GMT
+// Date: Sun, 17 Jan 2021 12:30:30 GMT
 // Content-Length: 204
-// Request duration: 0.004426s
+// Request duration: 0.007628s
 #+END_SRC
 
 #+begin_src restclient
-GET http://localhost:4000/api/v1/users/id/60042c16f47bf50df9b62096
+GET http://localhost:4000/api/v1/users/id/60042dde01a4e0350c84341e
 #+end_src
 
 #+RESULTS:
 #+BEGIN_SRC js
-"code=405, message=Method Not Allowed"
+{
+  "success": true,
+  "data": {
+    "id": "60042dde01a4e0350c84341e",
+    "First": "Sam",
+    "Last": "Jackson",
+    "Age": 34,
+    "City": "New York",
+    "Country": "USA"
+  }
+}
 
-// GET http://localhost:4000/api/v1/users/id/60042c16f47bf50df9b62096
-// HTTP/1.1 405 Method Not Allowed
+// GET http://localhost:4000/api/v1/users/id/60042dde01a4e0350c84341e
+// HTTP/1.1 200 OK
 // Content-Type: application/json; charset=UTF-8
-// Date: Sun, 17 Jan 2021 12:23:38 GMT
-// Content-Length: 39
-// Request duration: 0.004037s
+// Date: Sun, 17 Jan 2021 12:30:40 GMT
+// Content-Length: 180
+// Request duration: 0.004449s
 #+END_SRC
 
 #+begin_src restclient
@@ -108,8 +118,22 @@ GET http://localhost:4000/api/v1/users/country/USA
 #+end_src
 
 #+begin_src restclient
-DELETE http://localhost:4000/api/v1/users/6004176776694f24fb635af0
+DELETE http://localhost:4000/api/v1/users/id/60042dde01a4e0350c84341e
 #+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "DeletedCount": 1
+}
+
+// DELETE http://localhost:4000/api/v1/users/id/60042dde01a4e0350c84341e
+// HTTP/1.1 200 OK
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 12:30:57 GMT
+// Content-Length: 24
+// Request duration: 0.006732s
+#+END_SRC
 
 #+begin_src restclient
 POST http://localhost:4000/api/v1/users
