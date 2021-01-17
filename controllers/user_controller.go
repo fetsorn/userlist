@@ -20,6 +20,15 @@ func NewController() *UserController {
 	return controller
 }
 
+func (controller *UserController) DeleteUser(c echo.Context) error {
+	id, _ := primitive.ObjectIDFromHex(c.Param("id"))
+	deleteResult, err := controller.UserService.DeleteUserService(id)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, id)
+	}
+	return c.JSON(http.StatusOK, deleteResult)
+}
+
 func (controller *UserController) GetUsers(c echo.Context) error {
 	var users models.Users
 	users, err := controller.UserService.GetUsersService()

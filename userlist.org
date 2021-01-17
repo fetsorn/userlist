@@ -68,8 +68,32 @@ type Store interface {
 GET http://localhost:4000/api/v1/users
 #+end_src
 
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "success": true,
+  "data": [
+    {
+      "id": "6004176776694f24fb635af0",
+      "First": "Sam"
+    }
+  ]
+}
+
+// GET http://localhost:4000/api/v1/users
+// HTTP/1.1 200 OK
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 10:54:52 GMT
+// Content-Length: 112
+// Request duration: 0.009527s
+#+END_SRC
+
 #+begin_src restclient
-GET http://localhost:4000/api/v1/users/600415288c5a41cad1c1b10a
+GET http://localhost:4000/api/v1/users/6004176776694f24fb635af0
+#+end_src
+
+#+begin_src restclient
+DELETE http://localhost:4000/api/v1/users/6004176776694f24fb635af0
 #+end_src
 
 #+begin_src restclient
@@ -80,18 +104,6 @@ Content-Type: application/json
       "first":  "iysh",
 }
 #+end_src
-
-#+RESULTS:
-#+BEGIN_SRC js
-"code=404, message=Not Found"
-
-// POST http://localhost:4000/api/v1/users
-// HTTP/1.1 404 Not Found
-// Content-Type: application/json; charset=UTF-8
-// Date: Sun, 17 Jan 2021 09:43:29 GMT
-// Content-Length: 30
-// Request duration: 0.022668s
-#+END_SRC
 
 #+begin_src restclient
 PUT http://localhost:4000/api/v1/users/6003edc4905c04207f497152
@@ -120,9 +132,9 @@ Content-Type: application/json
  - [X] commit "feat: GET all users"
  - [X] persist a user object and GET it by id
  - [X] commit "feat: GET a user by id"
- - [ ] intermission
- - [ ] delete a user with DELETE
- - [ ] commit "feat: DELETE a user by id"
+ - [X] intermission
+ - [X] delete a user with DELETE
+ - [X] commit "feat: DELETE a user by id"
  - [ ] create a user with POST
  - [ ] commit "feat: POST a new user"
  - [ ] mutate a user object with PUT

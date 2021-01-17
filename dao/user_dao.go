@@ -17,6 +17,11 @@ func NewDao() *coll {
 	return Collection
 }
 
+func (Collection *coll) DeleteUser(filter interface{}) (result *mongo.DeleteResult, err error) {
+	result, err = Collection.UserCollection.DeleteOne(context.TODO(), filter)
+	return result, err
+}
+
 func (Collection *coll) GetUser(filter interface{}) (result *mongo.SingleResult) {
 	result = Collection.UserCollection.FindOne(context.TODO(), filter)
 	return result

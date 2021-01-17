@@ -4,6 +4,7 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
 	"userlist/dao"
 	"userlist/models"
 )
@@ -17,6 +18,15 @@ var service *Service
 func NewService() *Service {
 	service = &Service{dao.NewDao()}
 	return service
+}
+
+func (service *Service) DeleteUserService(id primitive.ObjectID) (res *mongo.DeleteResult, err error) {
+	filter := bson.M{"_id": id}
+	res, err = service.userdao.DeleteUser(filter)
+	if err != nil {
+		return res, err
+	}
+	return res, err
 }
 
 func (service *Service) GetUserService(id primitive.ObjectID) (user models.User, err error) {
