@@ -19,6 +19,7 @@ func Routes() (e *echo.Echo) {
 	var Controllers = controllers.NewController()
 	e.Validator = &models.UserValidator{validator.New()}
 	g := e.Group("/api/v1/users", UserCtx)
+	g.GET("/:id", Controllers.GetUser)
 	g.GET("", Controllers.GetUsers)
 	return e
 }
