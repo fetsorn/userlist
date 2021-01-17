@@ -22,6 +22,7 @@ func Routes() (e *echo.Echo) {
 	g.DELETE("/:id", Controllers.DeleteUser)
 	g.GET("/:id", Controllers.GetUser)
 	g.GET("", Controllers.GetUsers)
+	g.POST("", Controllers.CreateUser)
 	return e
 }
 func UserCtx(next echo.HandlerFunc) echo.HandlerFunc {

@@ -4,6 +4,7 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/mongo"
 	"userlist/db"
+	"userlist/models"
 )
 
 type coll struct {
@@ -15,6 +16,11 @@ var Collection *coll
 func NewDao() *coll {
 	Collection = &coll{UserCollection: db.GetUserCollection()}
 	return Collection
+}
+
+func (Collection *coll) AddUser(u *models.User) (result *mongo.InsertOneResult, err error) {
+	result, err = Collection.UserCollection.InsertOne(context.TODO(), u)
+	return result, err
 }
 
 func (Collection *coll) DeleteUser(filter interface{}) (result *mongo.DeleteResult, err error) {

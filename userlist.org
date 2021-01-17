@@ -68,26 +68,6 @@ type Store interface {
 GET http://localhost:4000/api/v1/users
 #+end_src
 
-#+RESULTS:
-#+BEGIN_SRC js
-{
-  "success": true,
-  "data": [
-    {
-      "id": "6004176776694f24fb635af0",
-      "First": "Sam"
-    }
-  ]
-}
-
-// GET http://localhost:4000/api/v1/users
-// HTTP/1.1 200 OK
-// Content-Type: application/json; charset=UTF-8
-// Date: Sun, 17 Jan 2021 10:54:52 GMT
-// Content-Length: 112
-// Request duration: 0.009527s
-#+END_SRC
-
 #+begin_src restclient
 GET http://localhost:4000/api/v1/users/6004176776694f24fb635af0
 #+end_src
@@ -101,7 +81,7 @@ POST http://localhost:4000/api/v1/users
 Content-Type: application/json
 
 {
-      "first":  "iysh",
+      "First":  "iysh"
 }
 #+end_src
 
@@ -135,8 +115,8 @@ Content-Type: application/json
  - [X] intermission
  - [X] delete a user with DELETE
  - [X] commit "feat: DELETE a user by id"
- - [ ] create a user with POST
- - [ ] commit "feat: POST a new user"
+ - [X] create a user with POST
+ - [X] commit "feat: POST a new user"
  - [ ] mutate a user object with PUT
  - [ ] commit "feat: PUT a user name by id"
  - [ ] intermission

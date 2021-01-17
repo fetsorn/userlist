@@ -20,6 +20,14 @@ func NewService() *Service {
 	return service
 }
 
+func (service *Service) AddUserService(u *models.User) (res *mongo.InsertOneResult, err error) {
+	result, err := service.userdao.AddUser(u)
+	if err != nil {
+		return result, err
+	}
+	return result, err
+}
+
 func (service *Service) DeleteUserService(id primitive.ObjectID) (res *mongo.DeleteResult, err error) {
 	filter := bson.M{"_id": id}
 	res, err = service.userdao.DeleteUser(filter)
