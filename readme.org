@@ -69,7 +69,7 @@ GET http://localhost:4000/api/v1/users
   "success": true,
   "data": [
     {
-      "id": "6004299cd06d8b1cfeb3c7ad",
+      "id": "60042c16f47bf50df9b62096",
       "First": "Sam",
       "Last": "Jackson",
       "Age": 34,
@@ -82,14 +82,26 @@ GET http://localhost:4000/api/v1/users
 // GET http://localhost:4000/api/v1/users
 // HTTP/1.1 200 OK
 // Content-Type: application/json; charset=UTF-8
-// Date: Sun, 17 Jan 2021 12:12:16 GMT
+// Date: Sun, 17 Jan 2021 12:23:12 GMT
 // Content-Length: 204
-// Request duration: 0.007006s
+// Request duration: 0.004426s
 #+END_SRC
 
 #+begin_src restclient
-GET http://localhost:4000/api/v1/users/6004176776694f24fb635af0
+GET http://localhost:4000/api/v1/users/id/60042c16f47bf50df9b62096
 #+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+"code=405, message=Method Not Allowed"
+
+// GET http://localhost:4000/api/v1/users/id/60042c16f47bf50df9b62096
+// HTTP/1.1 405 Method Not Allowed
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 12:23:38 GMT
+// Content-Length: 39
+// Request duration: 0.004037s
+#+END_SRC
 
 #+begin_src restclient
 GET http://localhost:4000/api/v1/users/country/USA
@@ -107,19 +119,6 @@ Content-Type: application/json
       "First":  "iysh"
 }
 #+end_src
-
-#+RESULTS:
-#+BEGIN_SRC js
-{
-}
-
-// POST http://localhost:4000/api/v1/users
-// HTTP/1.1 400 Bad Request
-// Content-Type: application/json; charset=UTF-8
-// Date: Sun, 17 Jan 2021 11:46:04 GMT
-// Content-Length: 3
-// Request duration: 0.019757s
-#+END_SRC
 
 #+begin_src restclient
 PUT http://localhost:4000/api/v1/users/600422d2e341f15cc6503207
