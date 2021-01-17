@@ -25,15 +25,81 @@ Field of the entity User
 - age (int)
 - city (string)
 - country (string)
+#+begin_src go
+type User struct {
+	first   string `json:”first”   bson:"first"   validate:"required"`
+	last    string `json:”last”    bson:"last"    validate:"required"`
+	age     int    `json:”age”     bson:"age"     validate:"required"`
+	city    string `json:”city”    bson:"city"    validate: "required"`
+	country string `json:”country” bson:"country" validate: "required"`
+}
+#+end_src
 
-Tests
-- add user
-- delete user by id
+Inteface
+- add user Insert
+- delete user by id - deleteByID
 - get by id
 - get by first/last name
 - get by city
 - get by country
 - get all users
+#+begin_src go
+type Store interface {
+	storage.StoreBase
+	Get(id id.ID) (User, error)
+	GetByName(name string) (User, error)
+	GetByName(name string) (User, error)
+	GetByCity(city string) (User, error)
+	GetByCountry(string string) (User, error)
+	Update(id id.ID, update User) (User, error)
+	Insert(o User) error
+	Delete(id id.ID) error
+	Exists(name string) (bool, error)
+}
+#+end_src
+
+* readers
+ - https://www.avcosystems.com/blog/mongo-go/
+ - https://golangdocs.com/mongodb-golang
+ - https://www.mongodb.com/blog/post/quick-start-golang--mongodb--how-to-read-documents
+ - https://www.mongodb.com/blog/post/quick-start-golang--mongodb--data-aggregation-pipeline
+* rest
+#+begin_src restclient
+GET http://localhost:4000/api/v1/users
+#+end_src
+
+#+begin_src restclient
+POST http://localhost:4000/api/v1/users
+Content-Type: application/json
+
+{
+      "first":  "iysh",
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+"code=404, message=Not Found"
+
+// POST http://localhost:4000/api/v1/users
+// HTTP/1.1 404 Not Found
+// Content-Type: application/json; charset=UTF-8
+// Date: Sun, 17 Jan 2021 09:43:29 GMT
+// Content-Length: 30
+// Request duration: 0.022668s
+#+END_SRC
+
+#+begin_src restclient
+PUT http://localhost:4000/api/v1/users/6003edc4905c04207f497152
+Content-Type: application/json
+
+{
+      "name":  "iysh",
+      "email": "iyshrylana",
+      "age":   45
+}
+#+end_src
+
 * tasks
  - [X] install setup
    + [X] echo
@@ -43,14 +109,11 @@ Tests
  - [X] setup emacs
    + [X] rest
    + [X] golang
- - [ ] commit "docs: plan tasks"
- - [ ] intermission
- - [ ] check setup
-   + [ ] helloWorld echo with postman or restclient
-     - GET a default string
-   + [ ] helloWorld mongodb
-     - create database, store and retrieve a string
- - [ ] describe a single user entity
+ - [X] commit "docs: plan tasks"
+ - [X] intermission
+ - [X] describe a single user entity
+ - [X] route getUsers to /
+ - [X] commit "feat: GET all users"
  - [ ] instantiate an empty user entity and GET it by id
  - [ ] commit "feat: GET a user by id"
  - [ ] intermission
